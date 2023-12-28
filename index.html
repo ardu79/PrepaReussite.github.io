@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PrépaRéussite - Inscription</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1 id="slogan">Chaque question posée est une opportunité d'apprendre </h1>
+        <script>
+            // Tableau de slogans ou phrases motivantes
+            var slogans = [
+                "Chaque réponse trouvée est une victoire vers le succès académique.",
+                "Inspirez la réussite.",
+                "L'excellence à chaque étape.",
+                "Votre succès commence ici.",
+                "Élevez votre savoir.",
+                "Chaque effort compte."
+            ];
+
+            // Fonction pour changer le slogan toutes les 3 secondes
+            function changerSlogan() {
+                var index = 0;
+                setInterval(function() {
+                    document.getElementById("slogan").innerText = slogans[index];
+                    index = (index + 1) % slogans.length;
+                }, 3000); // Changement toutes les 3 secondes
+            }
+
+            // Appeler la fonction pour démarrer le diaporama de slogans
+            changerSlogan();
+        </script>
+    </header>
+
+    <nav>
+        <!-- Liens de navigation -->
+    </nav>
+
+    <section id="inscription">
+        <h2>Inscription au TD</h2>
+        <form action="traitement.php" method="post">
+            <label for="nom">Nom :</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="prenom">Prénom :</label>
+            <input type="text" id="prenom" name="prenom" required>
+
+            <label for="email">E-mail :</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="telephone">Téléphone (avec indicatif +228) :</label>
+            <input type="tel" id="telephone" name="telephone" required>
+
+            <label for="ecole">École de provenance :</label>
+            <input type="text" id="ecole" name="ecole" required>
+
+            <label for="cours">Cours :</label>
+            <select id="cours" name="cours" required>
+                <option value="">Selectionnez le cours de votre choix</option>
+                <option value="mathematiques">Mathématiques</option>
+                <option value="physique_ou_chimie">Physique ou Chimie</option>
+                <option value="les_deux">Les deux</option>
+            </select>
+
+            <label for="classe">Classe :</label>
+            <select id="classe" name="classe" required>
+                <option value="">Selectionnez votre classe</option>
+                <option value="1ere">1ère</option>
+                <option value="terminale">Terminale</option>
+            </select>
+
+            <p>Après avoir rempli les informations, cliquez sur le bouton ci-dessous pour ouvrir WhatsApp :</p>
+            <button type="button" onclick="envoyerWhatsApp()">Envoyer par WhatsApp</button>
+        </form>
+
+        <script>
+            function envoyerWhatsApp() {
+                // Numéro WhatsApp de destination
+                var numeroWhatsApp = '+22879721482';
+
+                // Récupérer les informations saisies par l'utilisateur
+                var nom = document.getElementById('nom').value;
+                var prenom = document.getElementById('prenom').value;
+                var email = document.getElementById('email').value;
+                var ecole = document.getElementById('ecole').value;
+                var cours = document.getElementById('cours').value;
+                var classe = document.getElementById('classe').value;
+
+                // Construire le message avec les informations
+                var message = 'Bonjour j\'aimerais m\'inscrire pour le TD en presentiel ,voici mes informations d\'inscription :\n\n' +
+                              'Nom : ' + nom + '\n' +
+                              'Prénom : ' + prenom + '\n' +
+                              'E-mail : ' + email + '\n' +
+                              'École de provenance : ' + ecole + '\n' +
+                              'Cours : ' + cours + '\n' +
+                              'Classe : ' + classe;
+
+                // Créer le lien WhatsApp avec le numéro de téléphone et le message
+                var lienWhatsApp = 'https://wa.me/' + numeroWhatsApp + '?text=' + encodeURIComponent(message);
+
+                // Ouvrir WhatsApp dans une nouvelle fenêtre ou onglet
+                window.open(lienWhatsApp, '_blank');
+            }
+        </script>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 PrépaRéussite</p>
+    </footer>
+</body>
+</html>
